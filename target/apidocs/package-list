@@ -1,0 +1,6 @@
+br.ufal.ic
+br.ufal.ic.api
+br.ufal.ic.db.dao
+br.ufal.ic.db.models
+br.ufal.ic.health
+br.ufal.ic.resources
