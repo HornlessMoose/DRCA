@@ -18,7 +18,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "The department name can't be blank")
+    @NotBlank(message = "Department name can't be blank")
     private String name;
     
     @ManyToOne

@@ -20,7 +20,7 @@ public class University {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @NotBlank(message = "The university name can't be blank")
+    @NotBlank(message = "University name can't be blank")
     private String name;
     
     public University(String name) {

@@ -20,8 +20,8 @@ public class Enrollment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@NotNull
-	private Long number;
+	@NotNull(message = "Enrollment number can't be null")
+	private Integer number;
 
 	@OneToOne
 	@NotNull(message = "Student can't be null")
@@ -30,7 +30,7 @@ public class Enrollment {
 	@ElementCollection
 	private List<Discipline> currentDisciplines;
 	
-	public Enrollment(Student student, long number) {
+	public Enrollment(Student student, Integer number) {
 		this.student = student;
 		this.number = number;
 		this.currentDisciplines = new ArrayList<Discipline>();

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import br.ufal.ic.db.models.Secretary.SecretaryType;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank(message = "The course name can't be blank")
+	@NotBlank(message = "Course name can't be blank")
 	@Setter
 	private String name;
 	
@@ -31,6 +32,7 @@ public class Course {
     private List<Discipline> disciplines;
 
 	@Setter
+	@NotNull(message = "Secretary type can't be null")
 	SecretaryType secretaryType;
 	
 	public Course(String name, SecretaryType secretaryType) {

@@ -20,7 +20,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @NotBlank(message = "The course name can't be blank")
+    @NotBlank(message = "Person name can't be blank")
     private String name;
 
     public Person(String name) {

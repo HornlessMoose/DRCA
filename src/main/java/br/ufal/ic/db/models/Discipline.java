@@ -26,16 +26,18 @@ public class Discipline {
 	@GeneratedValue( strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank(message = "The course name can't be blank")
+	@NotBlank(message = "Discipline name can't be blank")
 	private String name;
 	private Long credits = (long) 0, min_credits = (long) 0;
 
-	@NotNull(message = "Discipline code can't be null")
+	@NotBlank(message = "Discipline code can't be blank")
     private String code;
 	
+	@NotNull(message = "Discipline type can't be null")
 	@Enumerated(EnumType.STRING)
     private DisciplineType disciplineType;
 	
+	@NotNull(message = "Secretary type can't be null")
 	@Enumerated(EnumType.STRING)
     private SecretaryType secretaryType;
 	
@@ -43,6 +45,7 @@ public class Discipline {
     private List<Discipline> pre_discipline;
 	
 	@OneToOne
+	@NotNull(message = "Professor type can't be null")
 	private Professor professor;
 	
 	@ElementCollection
