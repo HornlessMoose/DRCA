@@ -10,6 +10,7 @@ import br.ufal.ic.db.dao.DepartmentDAO;
 import br.ufal.ic.db.dao.UniversityDAO;
 import br.ufal.ic.db.models.Department;
 import br.ufal.ic.db.models.University;
+
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.AllArgsConstructor;
 

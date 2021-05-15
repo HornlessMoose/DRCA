@@ -42,7 +42,7 @@ public class SecretaryResource {
 		 	return Response.status(Status.NOT_FOUND).entity("Department not found").build();
 		 }
 
-         Secretary secretary = new Secretary( department, entity.getSecretaryType());
+         Secretary secretary = new Secretary(department, entity.getSecretaryType());
 
          secretary.setDepartment(department);
         
@@ -121,7 +121,7 @@ public class SecretaryResource {
 
         Secretary secretary = secretaryDAO.get(id);
 
-        if( secretary == null) {
+        if(secretary == null) {
         	return Response.status(Status.NOT_FOUND).entity("Secretary not found").build();
         }
     

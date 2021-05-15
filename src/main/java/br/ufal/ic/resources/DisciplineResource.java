@@ -86,9 +86,14 @@ public class DisciplineResource {
             return Response.status(Status.NOT_FOUND).entity("Professor not found").build();
         }
         
-        discipline.setProfessor( professor );
+        discipline.setProfessor(professor);
+
+        discipline.setName(entity.getName());
+        discipline.setCode(entity.getCode());
+        discipline.setDisciplineType(entity.getDisciplineType());
+        discipline.setSecretaryType(entity.getSecretaryType());
         
-        return Response.ok(disciplineDAO.persist(  discipline )).build();
+        return Response.ok(disciplineDAO.persist(discipline)).build();
     }
 
     @PUT
@@ -126,6 +131,7 @@ public class DisciplineResource {
             return Response.status(Status.NOT_FOUND).entity("Subject not found").build();
         }
         
-        return Response.ok(disciplineDAO.delete(discipline)).build();
+        disciplineDAO.delete(discipline);
+        return Response.status(Status.NO_CONTENT).build();
     }
 }

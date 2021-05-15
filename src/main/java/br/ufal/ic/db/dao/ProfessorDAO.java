@@ -23,15 +23,13 @@ public class ProfessorDAO extends AbstractDAO<Professor> {
 
     @Override
     public Professor get(Serializable id) throws HibernateException {
-        log.info("getting discipline: id={}", id);
+        log.info("getting professor: id={}", id);
 
         return super.get(id);
     }
 
     @Override
     public Professor persist(Professor entity) throws HibernateException {
-        log.info("persisting professor: code={}", entity.getId());
-
         return super.persist(entity);
     }
 
@@ -40,10 +38,9 @@ public class ProfessorDAO extends AbstractDAO<Professor> {
         super.currentSession().update(entity);
 	}
 
-    public Professor delete(Professor entity) throws HibernateException {
+    public void delete(Professor entity) throws HibernateException {
         super.currentSession().delete(entity);
 
-        return entity;
     }
 
 }

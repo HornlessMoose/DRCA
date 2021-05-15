@@ -40,8 +40,7 @@ public class DisciplineDAO extends AbstractDAO<Discipline>{
         return entity;
     }
 
-	public Discipline delete(Discipline entity) throws HibernateException {
+	public void delete(Discipline entity) throws HibernateException {
         super.currentSession().delete(entity);
-        return entity;
     }
 }

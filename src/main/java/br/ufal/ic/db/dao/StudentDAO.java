@@ -39,10 +39,11 @@ public class StudentDAO extends AbstractDAO<Student> {
         super.currentSession().update(entity);
 	}
 
-	public Student delete(Student entity)  throws HibernateException{
-		log.info("deletting student: id={}", entity.getId());    		
+    public Student delete(Student entity) throws HibernateException {
+        log.info("deletting student: id={}", entity.getId());    		
         super.currentSession().delete(entity);
+
         return entity;
-	}
+    }
     
 }

@@ -68,6 +68,7 @@ public class ProfessorResource {
             return Response.status(Status.NOT_FOUND).entity("Professor not found").build();
         }
 
-        return Response.ok(professorDAO.delete(professor)).build();
+        professorDAO.delete(professor);
+        return Response.status(Status.NO_CONTENT).build();
     }
 }

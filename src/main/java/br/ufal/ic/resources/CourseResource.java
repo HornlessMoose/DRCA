@@ -88,4 +88,24 @@ public class CourseResource {
 		// disciplineDAO.persist(discipline);
 		return Response.ok(courseDAO.persist(course)).build();
 	}
+
+	@PUT
+    @Path("/{id}")
+    @UnitOfWork
+    public Response update(@PathParam("id") Long id, CourseDTO entity) {
+        
+        Course course = courseDAO.get(id);
+        
+        if(course == null) {
+
+            return Response.status(Status.NOT_FOUND).entity("Course not found").build();
+        }
+
+        course.setName(entity.getName());
+        course.setSecretaryType(entity.getSecretaryType());
+		course.setDisciplines(entity.getDisciplines());
+        
+        return Response.ok(courseDAO.update(course)).build();
+    
+    }
 }

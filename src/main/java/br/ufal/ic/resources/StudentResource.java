@@ -75,6 +75,7 @@ public class StudentResource {
             return Response.status(Status.NOT_FOUND).entity("Course not found").build();
         }
 
+        student.setName(entity.getName());
         student.setCourse(course);
 
         return Response.ok(studentDAO.persist(student)).build();
@@ -86,10 +87,12 @@ public class StudentResource {
     public Response delete(@PathParam("id") Long id) {
     
         Student student = studentDAO.get(id);
-    
-        studentDAO.delete(student);
 
-        return Response.status(Response.Status.NO_CONTENT).build();
+        if(student == null) {
+        	return Response.status(Status.NOT_FOUND).entity("Student not found").build();
+        }
+    
+        return Response.ok(studentDAO.delete(student)).build();
     }
 
 

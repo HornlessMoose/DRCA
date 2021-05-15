@@ -34,8 +34,10 @@ public class CourseDAO extends AbstractDAO<Course>{
         return super.persist(entity);
     }
     
-    public void update(Course entity) throws HibernateException {
+    public Course update(Course entity) throws HibernateException {
         super.currentSession().update(entity);
+
+        return entity;
     }
 
 	public Course delete(Course entity) throws HibernateException {
