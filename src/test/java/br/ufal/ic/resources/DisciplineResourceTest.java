@@ -29,7 +29,7 @@ import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 public class DisciplineResourceTest {
     
     public static DropwizardAppExtension<DRCAConfiguration> RULE = 
-    new DropwizardAppExtension(DRCAApplication.class,  
+    new DropwizardAppExtension<DRCAConfiguration>(DRCAApplication.class,  
     ResourceHelpers.resourceFilePath("config-test.yml"));
 
     Professor p = new Professor("Willy");

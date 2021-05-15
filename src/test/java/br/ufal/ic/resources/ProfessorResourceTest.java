@@ -24,7 +24,7 @@ import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 public class ProfessorResourceTest {
 
     public static DropwizardAppExtension<DRCAConfiguration> RULE = 
-    new DropwizardAppExtension(DRCAApplication.class,  
+    new DropwizardAppExtension<DRCAConfiguration>(DRCAApplication.class,  
     ResourceHelpers.resourceFilePath("config-test.yml"));
 
     @Test
