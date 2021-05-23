@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -102,6 +103,30 @@ public class StudentResourceTest {
             .put(Entity.json(s_saved), Student.class);
 
         assertEquals("Fella", s_updated.getName());
+    }
+
+    @Test
+    public void testDelete(){
+
+        Student s = new Student("Allef", c_saved);
+
+        Student s_saved = RULE.client().target(
+            String.format("http://localhost:%d/%s/student", RULE.getLocalPort(), "academicotest"))
+            .request()
+            .post(Entity.json(s), Student.class);
+
+        RULE.client().target(
+            String.format("http://localhost:%d/%s/student/%d", RULE.getLocalPort(), "academicotest", s_saved.getId()))
+            .request()
+            .delete();
+        
+        Response r = RULE.client().target(
+            String.format("http://localhost:%d/%s/student/%d", RULE.getLocalPort(), "academicotest", s_saved.getId()))
+            .request()
+            .get();
+
+        assertEquals(404, r.getStatus());
+
     }
 
     

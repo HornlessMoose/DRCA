@@ -1,13 +1,14 @@
 package br.ufal.ic.resources;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -107,11 +108,16 @@ public class ProfessorResourceTest {
             .request()
             .post(Entity.json(p), Professor.class);
 
-        Professor p_deleted = RULE.client().target(
+        RULE.client().target(
             String.format("http://localhost:%d/%s/professor/%d", RULE.getLocalPort(), "academicotest", p_saved.getId()))
             .request()
-            .delete(new GenericType<Professor>() {});
+            .delete();
         
-        assertNull(p_deleted);
+        Response r = RULE.client().target(
+            String.format("http://localhost:%d/%s/professor/%d", RULE.getLocalPort(), "academicotest", p_saved.getId()))
+            .request()
+            .get();
+
+        assertEquals(404, r.getStatus());
     }
 }

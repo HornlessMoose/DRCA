@@ -1,7 +1,6 @@
 package br.ufal.ic.resources;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,6 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -151,11 +152,16 @@ public class DisciplineResourceTest {
             .request()
             .post(Entity.json(d), Discipline.class);
 
-        Discipline d_deleted = RULE.client().target(
+        RULE.client().target(
             String.format("http://localhost:%d/%s/discipline/%d", RULE.getLocalPort(), "academicotest", d_saved.getId()))
             .request()
-            .delete(new GenericType<Discipline>() {});
+            .delete();
         
-        assertNull(d_deleted);
+        Response r = RULE.client().target(
+            String.format("http://localhost:%d/%s/discipline/%d", RULE.getLocalPort(), "academicotest", d_saved.getId()))
+            .request()
+            .get();
+
+        assertEquals(404, r.getStatus());
     }
 }

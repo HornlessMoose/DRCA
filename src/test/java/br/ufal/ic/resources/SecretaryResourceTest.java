@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -141,6 +143,30 @@ public class SecretaryResourceTest {
         
         assertThat(s_add_c.getCourses()).extracting("id").contains(c_saved.getId());
             
+    }
+
+    @Test
+    public void testDelete(){
+
+        Secretary s = new Secretary(d_saved, SecretaryType.GRADUATE);
+
+        Secretary s_saved =  RULE.client().target(
+            String.format("http://localhost:%d/%s/secretary", RULE.getLocalPort(), "academicotest"))
+            .request()
+            .post(Entity.json(s), Secretary.class);
+
+        RULE.client().target(
+            String.format("http://localhost:%d/%s/secretary/%d", RULE.getLocalPort(), "academicotest", s_saved.getId()))
+            .request()
+            .delete();
+
+        Response r = RULE.client().target(
+            String.format("http://localhost:%d/%s/secretary/%d", RULE.getLocalPort(), "academicotest", s_saved.getId()))
+            .request()
+            .get();
+
+        assertEquals(404, r.getStatus());
+
     }
     
 }

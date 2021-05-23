@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -113,12 +115,17 @@ public class DepartmentResourceTest {
             .request()
             .post(Entity.json(d), Department.class);
 
-        Department d_deleted = RULE.client().target(
+        RULE.client().target(
             String.format("http://localhost:%d/%s/department/%d", RULE.getLocalPort(), "academicotest", d_saved.getId()))
             .request()
-            .delete(new GenericType<Department>() {});
+            .delete();
         
-        assertEquals(d_deleted.getId(), d_saved.getId());
+        Response r = RULE.client().target(
+            String.format("http://localhost:%d/%s/secretary/%d", RULE.getLocalPort(), "academicotest", d_saved.getId()))
+            .request()
+            .get();
+
+        assertEquals(404, r.getStatus());
 
     }
 }

@@ -73,6 +73,7 @@ public class UniversityResource {
             return Response.status(Status.NOT_FOUND).entity("University not found").build();
         }
 		
-		return Response.ok(universityDAO.delete(university)).build();
+		universityDAO.delete(university);
+        return Response.status(Status.NO_CONTENT).build();
 	}
 }

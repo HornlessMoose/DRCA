@@ -125,6 +125,7 @@ public class SecretaryResource {
         	return Response.status(Status.NOT_FOUND).entity("Secretary not found").build();
         }
     
-        return Response.ok(secretaryDAO.delete(secretary)).build();
+        secretaryDAO.delete(secretary);
+        return Response.status(Status.NO_CONTENT).build();
     }
 }

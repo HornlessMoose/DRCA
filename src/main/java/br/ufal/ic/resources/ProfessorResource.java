@@ -40,6 +40,10 @@ public class ProfessorResource {
 	        
 	    Professor professor = professorDAO.get(id);
 
+        if(professor == null){
+            return Response.status(Status.NOT_FOUND).entity("Professor not found").build();
+        }
+
         return Response.ok(professor).build();
     }
 	
@@ -64,7 +68,7 @@ public class ProfessorResource {
     public Response delete(@PathParam("id") Long id) {
         Professor professor =  professorDAO.get(id);
         
-        if (professor == null) { 
+        if(professor == null) { 
             return Response.status(Status.NOT_FOUND).entity("Professor not found").build();
         }
 

@@ -38,8 +38,11 @@ public class ProfessorDAO extends AbstractDAO<Professor> {
         super.currentSession().update(entity);
 	}
 
-    public void delete(Professor entity) throws HibernateException {
+    public Professor delete(Professor entity) throws HibernateException {
+        log.info("deletting professor: id={}", entity.getId());
         super.currentSession().delete(entity);
+
+        return entity;
 
     }
 

@@ -297,7 +297,7 @@ public class EnrollmentResourceTest {
             .request()
             .put(Entity.json(e));
 
-            assertEquals(403, r.getStatus());
+        assertEquals(403, r.getStatus());
     }
 
 }

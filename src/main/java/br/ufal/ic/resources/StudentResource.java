@@ -92,7 +92,8 @@ public class StudentResource {
         	return Response.status(Status.NOT_FOUND).entity("Student not found").build();
         }
     
-        return Response.ok(studentDAO.delete(student)).build();
+        studentDAO.delete(student);
+        return Response.status(Status.NO_CONTENT).build();
     }
 
 
